@@ -111,6 +111,50 @@ lascia la sezione con un `[TODO]` da riempire quando emergerà.
 - Alla fine, riepiloga in chat: cosa hai scritto, cosa hai dedotto vs chiesto, e la lista dei
   `[TODO]` aperti. Non incollare l'intero file in chat se è lungo — l'utente lo apre nel repo.
 
+## Passo finale — permessi del progetto
+
+Dopo aver scritto il CLAUDE.md, **proponi un allowlist di comandi per questo repo** e
+chiedi all'utente cosa pre-autorizzare, così smette di confermare a mano i comandi di
+routine. Va scritto in `.claude/settings.json` del progetto — **mai** nel settings globale:
+un allow globale varrebbe anche in repo non fidate.
+
+### Principio
+- Pre-autorizza solo comandi **read-only** o del **ciclo di sviluppo** di questo progetto.
+- **Mai** pre-autorizzare comandi distruttivi o mutanti: restano a conferma
+  (`rm`, `git push`, `git reset --hard`, `alembic upgrade/downgrade`, `docker compose down`,
+  `DROP …`, `pip install`, `curl` verso host arbitrari).
+- **Chiedi, non decidere**: proponi un set ragionato, l'utente sceglie.
+
+### Cosa proporre (adatta allo stack già rilevato/scelto)
+
+Sempre sicuri (read-only, qualsiasi stack):
+`Bash(git status:*)`, `Bash(git diff:*)`, `Bash(git log:*)`, `Bash(git show:*)`,
+`Bash(rg:*)`, `Bash(fd:*)`, `Bash(ls:*)`, `Bash(tree:*)`.
+
+Dev loop **Python**:
+`Bash(pytest:*)`, `Bash(ruff check:*)`, `Bash(ruff format:*)`, `Bash(mypy:*)`,
+`Bash(uv run:*)`, `Bash(uv pip list:*)`, `Bash(alembic current:*)`, `Bash(alembic history:*)`.
+
+Dev loop **JS/TS**:
+`Bash(pnpm test:*)`, `Bash(pnpm lint:*)`, `Bash(pnpm build:*)`, `Bash(pnpm typecheck:*)`.
+
+Servizi (solo se il progetto li usa):
+`Bash(pg_isready:*)`, `Bash(redis-cli ping)`, `Bash(docker compose ps:*)`, `Bash(docker compose logs:*)`.
+
+⚠️ I comandi che **eseguono codice** del repo (`pytest`, `uv run`, `pnpm test`) sono comodi ma
+girano il codice del progetto: vanno bene in un repo fidato. Dillo all'utente quando li proponi.
+
+### Come chiedere
+Usa `AskUserQuestion` (multi-select), raggruppando: "Read-only (git/ricerca)" (di norma tutti
+sì), "Dev loop <stack>" (l'utente sceglie), "Servizi" (solo se rilevanti). Non proporre mai
+voci distruttive, nemmeno come opzione.
+
+### Scrivi
+Scrivi `permissions.allow` in `.claude/settings.json` (scope **project**: condiviso e committato
+col team). Se l'utente preferisce permessi personali non condivisi, usa
+`.claude/settings.local.json` (gitignorato). Se il file esiste già, **fai l'unione** della allow
+list — non sovrascrivere ciò che c'era.
+
 ## Anti-pattern da evitare
 
 - ❌ Inventare comandi (`make test`) senza aver visto un Makefile
@@ -119,3 +163,5 @@ lascia la sezione con un `[TODO]` da riempire quando emergerà.
 - ❌ Scaricare tutta l'intervista in un solo messaggio invece che a blocchi
 - ❌ Produrre un CLAUDE.md di 200 righe per un progetto che non esiste ancora
 - ❌ Lasciare le sezioni-template con i `[...]` segnaposto originali al posto di `[TODO]` reali
+- ❌ Mettere l'allowlist nel settings globale invece che in `.claude/` del progetto
+- ❌ Pre-autorizzare comandi distruttivi o mutanti "per comodità"
