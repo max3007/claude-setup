@@ -5,6 +5,12 @@ description: Use this skill whenever the user asks to write, generate, suggest, 
 
 # Commit messages
 
+## Lingua
+
+Il messaggio di commit è **sempre in inglese** — subject, body e footer — anche quando la
+conversazione è in italiano. Non tradurre, non mischiare le lingue. Vale anche se l'utente
+ti ha appena parlato in italiano: il commit resta inglese.
+
 ## Format
 
 Conventional Commits:

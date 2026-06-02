@@ -10,6 +10,7 @@
 - Se non sei sicuro, dillo esplicitamente invece di inventare
 - Non scusarti ripetutamente — riconosci l'errore una volta e correggi
 - Italiano per la conversazione, inglese per codice/commenti/commit
+- Non coniugare termini inglesi in italiano: di' "fare un commit", "creare un symlink", "dividere in più commit" — non "committare", "linkare", "splittare", "pushare"
 
 ## Stile di lavoro
 
