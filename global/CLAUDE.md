@@ -20,11 +20,21 @@
 
 ## Default tecnici (se il progetto non specifica altro)
 
-- Linguaggi: TypeScript > JavaScript, Python con type hints, Rust per CLI
-- Package manager: `pnpm` per JS/TS, `uv` per Python
+- Linguaggi: **Python con type hints** come default; TypeScript per il frontend; Rust per CLI dove servono performance o distribuzione di un binario
+- Package manager: `uv` per Python, `pnpm` per JS/TS
 - Test: scrivili insieme al codice, non dopo
 - Formatter: usa quello del progetto. Se non c'è: Prettier (JS/TS), Ruff (Python), rustfmt (Rust)
 - Stringhe: virgolette doppie ovunque tranne dove la lingua impone il contrario
+
+## Stack ricorrente (i miei progetti più comuni)
+
+Molti miei progetti condividono lo stesso impianto. Quando un repo lo usa, valgono questi default — il CLAUDE.md del progetto può sovrascriverli.
+
+- **DB**: PostgreSQL + Alembic. Le migration generate con `--autogenerate` vanno **sempre riviste a mano** prima di applicarle (autogenerate sbaglia spesso con enum, indici e tipi custom).
+- **Cache/coda**: Redis. Tratta i dati come volatili, non come persistenti.
+- **Runtime locale**: Docker Compose. Prima di concludere "non funziona", verifica che i servizi (db, redis) siano su.
+- **Bot Telegram**: il token sta in una env-var (`TELEGRAM_BOT_TOKEN`), **mai** hardcoded, **mai** dentro regole di permesso o comandi committati.
+- **Segreti in generale**: env-var o secret manager. Se vedi un segreto in chiaro in un file di config (incluso `settings.json`), **segnalalo** invece di usarlo.
 
 ## Operazioni distruttive
 

@@ -17,3 +17,6 @@ Thumbs.db
 
 # Materiale di riferimento locale (es. README del marketplace ufficiale Anthropic)
 /README plugin.md
+
+# Analisi della config personale: contiene dati privati, resta solo in locale
+/docs/analisi-globale.md

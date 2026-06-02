@@ -33,7 +33,7 @@ conflitti con le tue skill locali (`commit-messages`, `code-review`, ecc.).
 ## Plugin consigliati per QUESTO setup
 
 Scelti per coerenza con i default del [CLAUDE.md globale](global/CLAUDE.md)
-(TypeScript, Python, Rust; workflow git). Tutti da `claude-plugins-official`.
+(Python come linguaggio principale; workflow git). Tutti da `claude-plugins-official`.
 
 ### Code intelligence (LSP) — il guadagno più alto
 
@@ -41,12 +41,15 @@ Danno a Claude diagnostica automatica dopo ogni edit (errori di tipo, import man
 e navigazione precisa (go-to-definition, find-references). **Richiedono il binario del
 language server installato** sul sistema.
 
-| Linguaggio | Plugin | Binario richiesto |
-|---|---|---|
-| TypeScript | `typescript-lsp` | `typescript-language-server` |
-| Python | `pyright-lsp` | `pyright-langserver` |
-| Rust | `rust-analyzer-lsp` | `rust-analyzer` |
-| Go | `gopls-lsp` | `gopls` |
+| Linguaggio | Plugin | Binario richiesto | Nel set di default? |
+|---|---|---|---|
+| Python | `pyright-lsp` | `pyright-langserver` | ✅ sì (linguaggio principale) |
+| TypeScript | `typescript-lsp` | `typescript-language-server` | no — abilitalo se ti serve |
+| Rust | `rust-analyzer-lsp` | `rust-analyzer` | no — abilitalo se ti serve |
+| Go | `gopls-lsp` | `gopls` | no — abilitalo se ti serve |
+
+Il set di default abilita **solo `pyright-lsp`**: gli altri li accendi al volo con
+`/plugin install <nome>@claude-plugins-official` quando apri un progetto in quel linguaggio.
 
 ### Integrazioni esterne (MCP)
 
@@ -86,9 +89,7 @@ sovrascrive). Il set:
 ```json
 {
   "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
     "github@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true
   }
