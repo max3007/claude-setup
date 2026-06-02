@@ -63,9 +63,15 @@ Dovrebbe rispondere usando il contenuto del CLAUDE.md.
 
 Le skill restano dormienti finché la loro `description` non matcha il task corrente. Costo zero quando non servono.
 
+## Plugin ufficiali
+
+Oltre alle skill locali puoi **consumare** i plugin ufficiali di Anthropic (LSP,
+integrazioni MCP come `github`, security review). Quali installare, i comandi e come
+renderli parte del setup versionato: vedi [PLUGINS.md](PLUGINS.md).
+
 ## Prossimi step
 
 Quando questo setup ti sta stretto, aggiungi i layer successivi:
 - **L3 Hooks** → enforcement deterministico (es. blocca `rm -rf`)
 - **L4 Subagents** → delegare task pesanti senza inquinare la sessione
-- **L5 Plugins** → distribuire il setup al team
+- **L5 Plugins** → distribuire il *tuo* setup come plugin al team (vedi [PLUGINS.md](PLUGINS.md) per il lato *consumo*)
