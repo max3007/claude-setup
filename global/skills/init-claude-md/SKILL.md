@@ -5,8 +5,9 @@ description: Use this skill when the user wants to create, generate, bootstrap, 
 
 # Init CLAUDE.md
 
-Genera il `CLAUDE.md` di un progetto riempiendo lo schema in `project/CLAUDE.md`.
-Il template è la **forma target**; questa skill è il **processo** per riempirla senza inventare.
+Genera il `CLAUDE.md` di un progetto riempiendo lo **schema qui sotto**.
+Lo schema è la **forma target**; questa skill è il **processo** per riempirla senza inventare.
+La skill è **autonoma**: lo schema è qui dentro, non dipende da file esterni a questa cartella.
 
 ## Regola d'oro
 
@@ -21,6 +22,24 @@ deve avere una di queste tre provenienze:
 
 Un CLAUDE.md con tre `[TODO]` onesti è migliore di uno "completo" e per metà inventato.
 Questo è coerente con la filosofia del setup: *meglio corto e vero che lungo e finto*.
+
+## Schema — le sezioni da produrre
+
+Riempi queste sezioni. **Ometti quelle che restano vuote**: un header senza contenuto è
+rumore. Tieni una sezione solo se ha contenuto vero o un `[TODO]` esplicito.
+
+- **Cos'è questo progetto** — una frase; più Stato (WIP/produzione/legacy), Utenti, Vincoli importanti
+- **Stack** — linguaggio, framework, DB, test, deploy
+- **Architettura in 60 secondi** — il flusso principale + i confini chiave ("X non parla mai con Y")
+- **Convenzioni di nomi** — file, classi/funzioni, test, branch
+- **Dove vivono le cose** — mappa breve delle cartelle principali e cosa contengono
+- **Test: cosa ci aspettiamo** — cosa va testato, come si lanciano, eventuale target
+- **Cose che il tuo "io futuro" dimenticherà** — gotcha, trabocchetti, comandi con flag nascosti (la sezione più preziosa)
+- **Cosa NON fare in questo repo** — pattern vietati, dipendenze cicliche, scorciatoie pericolose
+- **Comandi che uso spesso** — i comandi reali del progetto (visti in Makefile/scripts/CI)
+
+> Il template "umano" verboso vive in `project/CLAUDE.md` nel repo `claude-setup`, per chi
+> preferisce copiarlo a mano. La skill **non** lo legge: usa lo schema qui sopra.
 
 ## Passo 0 — Rileva lo scenario
 
@@ -105,8 +124,8 @@ lascia la sezione con un `[TODO]` da riempire quando emergerà.
 ## Output
 
 - Scrivi in `./CLAUDE.md` nella root del progetto.
-- Parti dalla struttura di `project/CLAUDE.md` del setup, ma **cancella le sezioni vuote**:
-  un template con header e nient'altro è rumore. Una sezione c'è solo se ha contenuto vero
+- Parti dallo **schema "le sezioni da produrre"** qui sopra, e **cancella le sezioni vuote**:
+  un header senza contenuto è rumore. Una sezione c'è solo se ha contenuto vero
   o un `[TODO]` esplicito.
 - Alla fine, riepiloga in chat: cosa hai scritto, cosa hai dedotto vs chiesto, e la lista dei
   `[TODO]` aperti. Non incollare l'intero file in chat se è lungo — l'utente lo apre nel repo.
