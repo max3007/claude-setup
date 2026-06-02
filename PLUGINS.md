@@ -77,7 +77,11 @@ security), e tieni le tue skill per le cose dove vuoi *la tua* opinione.
 L'aggancio dichiarativo: pre-dichiarare i plugin in un `settings.json`. Così non li
 reinstalli a mano su ogni macchina — fanno parte del setup come le skill.
 
-Crea `global/settings.json` (verrà linkato in `~/.claude/settings.json` da `install.sh`):
+Questo setup include già [`global/settings.json`](global/settings.json) con il set
+consigliato. `install.sh` **non lo linka**: fa il *merge* dei soli `enabledPlugins`
+nel tuo `~/.claude/settings.json`, preservando permessi, tema, modello e i plugin che
+hai già abilitato (settings.json è per-macchina e può contenere segreti — non si
+sovrascrive). Il set:
 
 ```json
 {
@@ -92,7 +96,8 @@ Crea `global/settings.json` (verrà linkato in `~/.claude/settings.json` da `ins
 ```
 
 `enabledPlugins` è un **oggetto** `"plugin@marketplace": true` (non un array).
-Il marketplace ufficiale è già noto, quindi non serve altro.
+Il marketplace ufficiale è già noto, quindi non serve altro. Aggiungi o rimuovi righe
+per personalizzare il set; per i plugin LSP ricorda di avere il binario sul `PATH`.
 
 Per abilitare anche plugin **della community**, prima dichiara il marketplace:
 
@@ -109,9 +114,6 @@ Per abilitare anche plugin **della community**, prima dichiara il marketplace:
 }
 ```
 
-> Per attivare questo file via `install.sh` serve aggiungere il symlink di
-> `global/settings.json`. Oggi lo script linka solo `CLAUDE.md` e le skill: l'estensione
-> è banale ma va fatta esplicitamente (vedi sotto).
 
 ## Scope di installazione
 

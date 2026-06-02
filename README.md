@@ -8,6 +8,7 @@ Setup di partenza per Claude Code: **Memory Layer** (CLAUDE.md) + **Knowledge La
 claude-setup/
 ├── global/                          → va in ~/.claude/
 │   ├── CLAUDE.md                    # Preferenze personali, sempre attive
+│   ├── settings.json               # Plugin ufficiali pre-abilitati (vedi PLUGINS.md)
 │   └── skills/                      # Skill riusabili in ogni progetto
 │       ├── init-claude-md/          # Genera il CLAUDE.md via intervista o scan
 │       ├── commit-messages/
