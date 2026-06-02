@@ -14,3 +14,6 @@ Thumbs.db
 # Config Claude Code locale di QUESTO repo (permessi di sessione, non il setup template).
 # NB: il leading slash limita alla root — project/.claude/ resta versionato.
 /.claude/
+
+# Materiale di riferimento locale (es. README del marketplace ufficiale Anthropic)
+/README plugin.md
