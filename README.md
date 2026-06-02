@@ -12,7 +12,6 @@ claude-setup/
 │   └── skills/                      # Skill riusabili in ogni progetto
 │       ├── init-claude-md/          # Genera il CLAUDE.md via intervista o scan
 │       ├── commit-messages/
-│       ├── code-review/
 │       └── debug-systematically/
 │
 └── project/                         → template da copiare in ogni repo

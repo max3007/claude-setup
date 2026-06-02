@@ -11,7 +11,7 @@ qui aggiungiamo capacità pronte mantenute da Anthropic.
 Un plugin è un pacchetto versionato che può contenere **skill, agent, hook, server MCP,
 server LSP**. Si installa da un *marketplace* (un repo git che cataloga i plugin).
 Le skill di un plugin sono **namespaced**: `/github:...`, non `/...`. Questo evita
-conflitti con le tue skill locali (`commit-messages`, `code-review`, ecc.).
+conflitti con le tue skill locali (`commit-messages`, `debug-systematically`, ecc.).
 
 ## I due marketplace ufficiali
 
@@ -59,18 +59,18 @@ Il set di default abilita **solo `pyright-lsp`**: gli altri li accendi al volo c
 ### Sicurezza
 
 - `security-guidance` — rivede ogni modifica che Claude scrive cercando vulnerabilità
-  comuni e gli fa correggere ciò che trova, nella stessa sessione. Complementare alla
-  tua skill `code-review` (che è on-demand; questo è continuo).
+  comuni e gli fa correggere ciò che trova, nella stessa sessione. Complementare al
+  comando built-in `/code-review` (che è on-demand; questo è continuo).
 
-## ⚠️ Sovrapposizioni con le tue skill
+## ⚠️ Sovrapposizioni con ciò che hai già
 
-Alcuni plugin ufficiali coprono terreno che le tue skill già coprono. **Scegline uno**,
-non entrambi, per evitare rumore e doppioni:
+Alcuni plugin ufficiali coprono terreno già coperto da una tua skill o da un built-in.
+**Scegline uno**, non entrambi, per evitare rumore e doppioni:
 
-| Plugin ufficiale | Tua skill | Nota |
+| Plugin ufficiale | Già coperto da | Nota |
 |---|---|---|
-| `commit-commands` | `commit-messages` | La tua è più opinionata (Conventional Commits, regole di split). Tienila. |
-| `pr-review-toolkit` | `code-review` | Il plugin usa agent multipli in parallelo: utile su PR grandi. Valuta caso per caso. |
+| `commit-commands` | skill locale `commit-messages` | La tua è più opinionata (Conventional Commits, regole di split). Tienila. |
+| `pr-review-toolkit` | built-in `/code-review` e `/review` | Il plugin usa agent multipli in parallelo: utile su PR grandi. Valuta caso per caso. |
 
 Regola pratica: usa i plugin per ciò che **non** sai/vuoi mantenere a mano (LSP, MCP,
 security), e tieni le tue skill per le cose dove vuoi *la tua* opinione.
