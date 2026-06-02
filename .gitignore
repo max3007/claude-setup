@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*~
+.idea/
+.vscode/
+
+# Backup generati da install.sh (vivono in ~/.claude, non qui — ma per sicurezza)
+*.backup.*
+
+# Config Claude Code locale di QUESTO repo (permessi di sessione, non il setup template).
+# NB: il leading slash limita alla root — project/.claude/ resta versionato.
+/.claude/
